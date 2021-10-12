@@ -651,7 +651,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lose,you fell into water
+  m_Text: 'you lostttttttttt
+
+'
 --- !u!222 &1897911796
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
+    ParticleSystem particless;
+    public GameObject player;
     public Text Score;
     public Text TimerText;
 
@@ -19,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        particless = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -30,26 +33,33 @@ public class PlayerScript : MonoBehaviour
         Score.text = "Score: " + scoreNum;
         if (scoreNum == totalcoins)
         {
-            if(timeleft<=timerVaule)
+            if (timeleft <= timerVaule)
             {
                 SceneManager.LoadScene("Win");
+                Cursor.visible = true;
             }
         }
-        else if(timeleft<=0)
+        else if (timeleft <= 0)
         {
-            SceneManager.LoadScene("Lose"); 
+            SceneManager.LoadScene("Lose");
+            Cursor.visible = true;
+
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Points")
         {
+            particless.Play();
             scoreNum = scoreNum += 10;
             Destroy(other.gameObject);
         }
+    
         else if (other.gameObject.tag == "water")
         {
-            SceneManager.LoadScene("Lose");
+            SceneManager.LoadScene("Lose"); 
+            Cursor.visible = true;
+
         }
     }
 }
